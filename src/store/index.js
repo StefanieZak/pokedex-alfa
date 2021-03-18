@@ -9,7 +9,10 @@ export default new Vuex.Store({
   },
   mutations: {
     search(state, payload) {
-      state.search = payload;
+      state.search = payload
+        .toLowerCase()
+        .replace(/[.?,!@#$%&*0123456789]/g, "")
+        .trim();
     },
   },
   actions: {},
