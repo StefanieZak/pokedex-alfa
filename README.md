@@ -1,4 +1,7 @@
-# pokedex-alfa
+# Pokedex-alfa
+
+Esse projeto foi criado utilizando as técnologias: Vue.js e SASS.<br>
+Os dados foram consumidos da API: https://pokeapi.co/
 
 ## Project setup
 ```
