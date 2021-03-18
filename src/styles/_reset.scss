@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+body, ul, li, h1, h2, h3, h4, p, a, button {
+  margin: 0px;
+  padding: 0px;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  border: none;
+  outline: none;
+}

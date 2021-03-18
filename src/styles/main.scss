@@ -1,0 +1,43 @@
+@import "reset";
+@import "colors";
+
+@function color($value) {
+  @return map-get($colors, $value);
+}
+
+// Mixins
+
+@mixin modifiers($map, $attribute) {
+  @each $key, $value in $map {
+    &--#{$key} {
+      #{$attribute}: $value;
+    }
+  }
+}
+
+// Geral
+
+.text {
+  @include modifiers($colors, "color");
+}
+
+.bg {
+  @include modifiers($colors, "background");
+}
+
+body {
+  background: color(grey);
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+a,
+li,
+button,
+input {
+  font-family: Arial, Helvetica, sans-serif;
+  color: color(black);
+}
