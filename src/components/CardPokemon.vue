@@ -62,7 +62,6 @@ export default {
     margin-right: 10px;
     p {
       font-size: 1rem;
-      text-transform: capitalize;
     }
   }
 </style>
