@@ -1,8 +1,8 @@
 <template>
   <section>
      <select name="select">
-      <option value="valor1">Normal</option>
-      <option value="valor2">Fighting</option>
+      <option value="valor1" selected disabled>Choose for type</option>
+      <option value="valor2">Normal</option>
       <option value="valor3">Flying</option>
       <option value="valor4">Poison</option>
       <option value="valor5">Ground</option>
@@ -21,6 +21,7 @@
       <option value="valor18">Fairy</option>
       <option value="valor19">Unknown</option>
       <option value="valor20">Shadow</option>
+      <option value="valor21">Fighting</option>
     </select>
   </section>
 </template>
@@ -32,5 +33,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  select {
+    margin-left: 15px;
+    padding: .25em;
+    border: 0;
+    border-bottom: 2px solid #ccc; 
+    letter-spacing: .05em;
+    border-radius: 3px;
+    &:focus, &:active {
+      outline: 0;
+      border-bottom-color: rgb(104, 248, 159);
+    }
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+   &::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-left: 2px solid #faf6ed;
+      border-right: 2px solid #faf6ed;
+    }
+  }
 </style>
