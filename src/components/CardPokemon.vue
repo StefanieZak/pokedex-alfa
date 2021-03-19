@@ -1,5 +1,6 @@
 <template>
   <section class="card bg--white" v-if="infoPokemon">
+    <router-link :to="{name: 'pokemon', params: {name: infoPokemon.name}}">
     <div>
       <img :src="infoPokemon.sprites.front_default" :alt="infoPokemon.name">
     </div>
@@ -7,6 +8,7 @@
       <p>{{infoPokemon.name}}</p>
       <p>#{{infoPokemon.id}}</p>
     </div>
+    </router-link>
   </section>
 </template>
 
