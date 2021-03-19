@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="card-wrapper" v-if="pokemon">
-      <div v-for="(pokemonContents, index) in searchResults" :key="index">
+      <div v-for="(pokemonContents, index) in pokemon" :key="index">
         <CardPokemon :pokemonContents="pokemonContents"/>
       </div>
     </div>
@@ -35,18 +35,6 @@ export default {
   created() {
     this.getPokemon();
   },
-  computed: {
-    search() {
-      return this.$store.state.search;
-    },
-    searchResults() {
-      if(this.search == '' || this.search == ' ') {
-        return this.pokemon;
-      } else {
-        return this.pokemon.filter(pokemon => pokemon.name == this.search);
-      }
-    }
-  }
 }
 </script>
 
