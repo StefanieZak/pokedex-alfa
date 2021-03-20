@@ -1,40 +1,54 @@
 <template>
   <section>
-     <select name="select">
-      <option value="valor1" selected disabled>Choose for type</option>
-      <option value="valor2">Normal</option>
-      <option value="valor3">Flying</option>
-      <option value="valor4">Poison</option>
-      <option value="valor5">Ground</option>
-      <option value="valor6">Rock</option>
-      <option value="valor7">Bug</option>
-      <option value="valor8">Ghost</option>
-      <option value="valor9">Steel</option>
-      <option value="valor10">Fire</option>
-      <option value="valor11">Water</option>
-      <option value="valor12">Grass</option>
-      <option value="valor13">Electric</option>
-      <option value="valor14">Psychic</option>
-      <option value="valor15">Ice</option>
-      <option value="valor16">Dragon</option>
-      <option value="valor17">Dark</option>
-      <option value="valor18">Fairy</option>
-      <option value="valor19">Unknown</option>
-      <option value="valor20">Shadow</option>
-      <option value="valor21">Fighting</option>
+     <select name="select" v-model="selected" @change="getPokemonByType($event)">
+      <option value="choose-for-type" selected disabled>Choose for type</option>
+      <option v-for="(type, index) in types" :key="index" :value="type.name" style="text-transform: capitalize;">{{type.name}}</option>
     </select>
   </section>
 </template>
 
 <script>
+import { api } from "@/services.js";
+
 export default {
   name: 'TypeFilter',
+  data() {
+    return {
+      types: "",
+      selected: "",
+      forType: "",
+    }
+  },
+  watch: {
+    selected() {
+      this.pokemonForType(this.selected);
+    }
+  },
+  methods: {
+    getPokemonByType() {
+      api.get(`type`)
+      .then(response => {
+        this.types = response.data.results;
+      });
+    },
+    pokemonForType(event) {
+      api.get(`type/${event}`)
+      .then(response => {
+        this.forType = response.data.pokemon;
+        this.$store.commit("typePokemon", this.forType);
+      });
+    }
+  },
+  created() {
+    this.getPokemonByType();
+  }
 }
 </script>
 
 <style lang="scss" scoped>
   select {
     margin-left: 15px;
+    margin-bottom: 5px;
     padding: .25em;
     border: 0;
     border-bottom: 2px solid #ccc; 

@@ -26,7 +26,12 @@
         </div>
       </div>
 
-        <div class="stats" v-for="(value, index) in stats" :key="index">
+      <div class="type-pokemon" v-if="infoPokemon.types">
+        <p :class="bgColor">{{infoPokemon.types[0].type.name}}</p>
+        <p v-if="infoPokemon.types[1]" :class="bgColorTwo">{{infoPokemon.types[1].type.name}}</p>
+      </div>
+
+      <div class="stats" v-for="(value, index) in stats" :key="index">
         <p v-if="stats">{{value.stat.name}}</p>
           <div class="progress">
           <p class="progress-done" v-if="stats" :style="{width: value.base_stat/2 + '%', opacity: '1', background: value.base_stat >= 50 ? 'lightgreen' : 'tomato' }">{{value.base_stat}}</p>
@@ -46,6 +51,7 @@ export default {
     return {
       infoPokemon: "",
       bgColor: "",
+      bgColorTwo: "",
       species: "",
       stats: "",
     }
@@ -58,6 +64,9 @@ export default {
         this.bgColor = "bg--" + this.infoPokemon.types[0].type.name;
         this.getSpecies(this.infoPokemon.id);
         this.stats = this.infoPokemon.stats;
+        if(this.infoPokemon.types[1]) {
+          this.bgColorTwo = "bg--" + this.infoPokemon.types[1].type.name;
+        }
       });
     },
     getSpecies(name) {
@@ -79,7 +88,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 10px auto;
+  margin: 15px auto;
   max-width: 40vw;
   padding-bottom: 20px;
 }
@@ -106,6 +115,18 @@ export default {
           font-weight: bold;
         }
       }
+    }
+  }
+
+  .type-pokemon {
+    display: flex;
+    justify-content: center;
+    p {
+      font-size: 0.75rem;
+      font-weight: bold;
+      border-radius: 3px;
+      padding: 5px 10px;
+      margin: 10px 6px 10px;
     }
   }
 
