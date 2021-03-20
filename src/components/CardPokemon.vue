@@ -1,5 +1,6 @@
 <template>
-  <section class="card bg--white" v-if="infoPokemon">
+  <section class="card bg--white" v-if="show">
+    <div v-if="infoPokemon">
     <router-link :to="{name: 'pokemon', params: {name: infoPokemon.name}}">
     <div>
       <img :src="infoPokemon.sprites.front_default" :alt="infoPokemon.name">
@@ -9,6 +10,7 @@
       <p>#{{infoPokemon.id}}</p>
     </div>
     </router-link>
+    </div>
   </section>
 </template>
 
@@ -21,6 +23,14 @@ export default {
   data() {
     return {
       infoPokemon: "",
+      typeOne: "",
+      typeTwo: "",
+      show: false,
+    }
+  },
+  watch: {
+    filterSelected() {
+      this.TypeSelected();
     }
   },
   methods: {
@@ -28,7 +38,23 @@ export default {
       api.get(`pokemon/${name}`)
       .then(response => {
         this.infoPokemon = response.data;
+        this.typeOne = this.infoPokemon.types[0].type.name;
+        this.typeTwo = this.infoPokemon.types[1] ? this.infoPokemon.types[1].type.name : null;
+        this.TypeSelected();
       });
+    },
+    TypeSelected() {
+      if(this.filterSelected == "" || this.typeOne == this.filterSelected || this.typeTwo == this.filterSelected) {
+        this.show = true;
+      }
+      else {
+        this.show = false;
+      }
+    }
+  },
+  computed: {
+    filterSelected() {
+      return this.$store.state.typePokemon;
     }
   },
   created() {

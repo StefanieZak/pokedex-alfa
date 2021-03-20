@@ -10,7 +10,6 @@ export default new Vuex.Store({
   mutations: {
     typePokemon(state, payload) {
       state.typePokemon = payload;
-      console.log(payload);
     },
   },
   actions: {},

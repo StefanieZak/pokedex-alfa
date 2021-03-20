@@ -1,7 +1,7 @@
 <template>
   <section>
      <select name="select" v-model="selected" @change="getPokemonByType($event)">
-      <option value="choose-for-type" selected disabled>Choose for type</option>
+      <option value="" selected>All pokemon</option>
       <option v-for="(type, index) in types" :key="index" :value="type.name" style="text-transform: capitalize;">{{type.name}}</option>
     </select>
   </section>
@@ -17,6 +17,7 @@ export default {
       types: "",
       selected: "",
       forType: "",
+      unusedTypes: ["dark", "unknown", "shadow"],
     }
   },
   watch: {
@@ -28,15 +29,12 @@ export default {
     getPokemonByType() {
       api.get(`type`)
       .then(response => {
-        this.types = response.data.results;
+        this.types = response.data.results.filter(item => !this.unusedTypes.includes(item.name));
       });
     },
     pokemonForType(event) {
-      api.get(`type/${event}`)
-      .then(response => {
-        this.forType = response.data.pokemon;
-        this.$store.commit("typePokemon", this.forType);
-      });
+        this.selected = event;
+        this.$store.commit("typePokemon", this.selected);
     }
   },
   created() {
