@@ -1,22 +1,26 @@
 <template>
-  <section v-on:keyup="searchPokemon">
+  <section>
+    <form @submit="searchPokemon">
     <input type="text" id="search" name="search" placeholder="Search" v-model="search">
+    </form>
   </section>
 </template>
 
 <script>
 export default {
   name: 'Search',
-    data() {
+  data() {
     return {
       search: "",
+      processedSearch: "",
     }
   },
   methods: {
     searchPokemon() {
-       this.$store.commit("search", this.search);
+      this.processedSearch = this.search.toLowerCase().replace(/[.,?!@#$0123456789]/g, "").trim();
+        this.$router.push(`/pokemon/${this.processedSearch}`);
     }
-  }
+  },
 }
 </script>
 

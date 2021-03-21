@@ -5,14 +5,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    search: "",
+    typePokemon: "",
+    listNamePokemon: "",
   },
   mutations: {
-    search(state, payload) {
-      state.search = payload
-        .toLowerCase()
-        .replace(/[.?,!@#$%&*0123456789]/g, "")
-        .trim();
+    typePokemon(state, payload) {
+      state.typePokemon = payload;
     },
   },
   actions: {},

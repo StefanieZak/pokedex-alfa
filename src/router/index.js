@@ -1,21 +1,33 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "../views/Home.vue";
+import Pokemon from "../views/Pokemon.vue";
+import NotFound from "../components/NotFound.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/",
+    name: "Home",
+    component: Home,
   },
-]
+  {
+    path: "/pokemon/:name",
+    name: "pokemon",
+    component: Pokemon,
+  },
+  {
+    path: "*",
+    name: "NotFound",
+    component: NotFound,
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
