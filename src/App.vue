@@ -1,20 +1,19 @@
 <template>
-  <div id="app">
-    <Search/>
-    <TypeFilter/>
-    <router-view/>
-  </div>
+  <section>
+    <div id="app">
+      <Search/>
+      <router-view/>
+    </div>
+  </section>
 </template>
 
 <script>
 import Search from '@/components/Search.vue';
-import TypeFilter from '@/components/TypeFilter.vue';
 
 export default {
   name: 'App',
   components: {
     Search,
-    TypeFilter,
   },
 }
 </script>

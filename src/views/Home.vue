@@ -1,7 +1,9 @@
 <template>
+<section>
   <div>
     <PokemonList/>
   </div>
+  </section>
 </template>
 
 <script>

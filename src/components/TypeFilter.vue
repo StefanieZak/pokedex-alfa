@@ -30,7 +30,6 @@ export default {
       api.get(`type`)
       .then(response => {
         this.types = response.data.results.filter(item => !this.unusedTypes.includes(item.name));
-        this.$router.push(`/`);
       });
     },
     pokemonForType(event) {

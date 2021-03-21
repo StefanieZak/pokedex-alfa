@@ -1,6 +1,10 @@
 <template>
   <section>
-    <div class="card bg--white" v-if="infoPokemon">
+    <div v-if="loading">
+      <PageLoading/>
+    </div>
+
+    <div class="card bg--white" v-else-if="infoPokemon">
       <div :class="bgColor" class="name">
       <p>{{infoPokemon.name}}</p>
       <p>#{{infoPokemon.id}}</p>
@@ -38,7 +42,8 @@
         </div>
       </div>
     </div>
-    <div v-else class="not-found">
+
+    <div v-if="notFound" class="not-found">
       <img src="@/assets/pokebola.png">
       <p>Pokemon not found!</p>
     </div>
@@ -58,12 +63,15 @@ export default {
       bgColorTwo: "",
       species: "",
       stats: "",
+      notFound: false,
+      loading: true,
     }
   },
   methods: {
     getPokemonByName(name) {
+      this.loading = true;
       api.get(`pokemon/${name}`)
-      .then(response => {
+      .then(response => {  
         this.infoPokemon = response.data;
         this.bgColor = "bg--" + this.infoPokemon.types[0].type.name;
         this.getSpecies(this.infoPokemon.id);
@@ -71,7 +79,10 @@ export default {
         if(this.infoPokemon.types[1]) {
           this.bgColorTwo = "bg--" + this.infoPokemon.types[1].type.name;
         }
+      }).catch(() =>{
+        this.notFound = true;
       });
+      this.loading = false;
     },
     getSpecies(name) {
       api.get(`pokemon-species/${name}`)
