@@ -3,7 +3,7 @@
 Esse projeto foi criado utilizando as técnologias: Vue.js e SASS.<br>
 Os dados foram consumidos da API: https://pokeapi.co/
 
-#### Você pode visualizar o projeot através deste link: https://pokedex-alfa.netlify.app/
+#### Você pode visualizar o projeto através deste link: https://pokedex-alfa.netlify.app/
 
 <br>
 <br>
