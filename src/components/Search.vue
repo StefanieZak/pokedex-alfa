@@ -17,11 +17,10 @@ export default {
   },
   methods: {
     searchPokemon() {
-      console.log(this.search);
       this.processedSearch = this.search.toLowerCase().replace(/[.,?!@#$0123456789]/g, "").trim();
-      this.$router.push(`/pokemon/${this.processedSearch}`);
+        this.$router.push(`/pokemon/${this.processedSearch}`);
     }
-  }
+  },
 }
 </script>
 

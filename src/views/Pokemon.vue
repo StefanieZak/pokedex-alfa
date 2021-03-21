@@ -38,6 +38,10 @@
         </div>
       </div>
     </div>
+    <div v-else class="not-found">
+      <img src="@/assets/pokebola.png">
+      <p>Pokemon not found!</p>
+    </div>
     <router-link to="/">Voltar</router-link>
   </section>
 </template>
@@ -155,6 +159,23 @@ export default {
     margin-top: 10px;
     &:hover {
       font-weight: bold;
+    }
+  }
+
+  .not-found {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+    img {
+      width: 30px;
+      margin: 0 auto;
+    }
+    p { 
+      color: #B30000;
+      text-transform: initial;
+      margin: 15px auto;
+      margin-bottom: 50px;
     }
   }
 
